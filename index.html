@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신흥 L&S Tech</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="lib/fullPage.js-master/dist/fullpage.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script src="lib/fullPage.js-master/dist/fullpage.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        $(function () {
+
+            // fullpage 설정, 페이지 넘길 시 애니메이션 트리거 설정
+            var myFullpage = new fullpage('#fullpage', {
+                navigation: false,
+                slidesNavigation: true,
+                lazyLoad: true,
+                credits: { enabled: false },
+                anchors: ['home', 'about', 'project', 'design', 'contact'],
+                afterLoad: function (origin, destination, direction) {
+                    if (destination.index == 0) {            // home 페이지로 이동했을 때
+                    }
+
+                    else if (destination.index == 1) {      // about 페이지로 이동했을 때
+                    }
+
+                    else if (destination.index == 2) {      // project 페이지로 이동했을 때
+                    }
+
+                    else if (destination.index == 3) {      // design 페이지로 이동했을 때
+                    }
+
+                    else if (destination.index == 4) {      // contact 페이지로 이동했을 때
+                    }
+                }
+            });
+
+            const progressCircle = document.querySelector(".autoplay-progress svg");
+            const progressContent = document.querySelector(".autoplay-progress span");
+            var swiper1 = new Swiper(".main_swiper", {
+                slidesPerView: 1,
+                centeredSlides: true,
+                loop: true,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+            });
+
+            const progressLine = document.querySelector('.autoplay-progress svg')
+            var swiper2 = new Swiper(".item_swiper", {
+                initialSlide: 0,
+                slidesPerView: 'auto',
+                observer: true,
+                observeParents: true,
+                loop: true,
+                autoplay: {
+                    delay: 6000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: ".item_swiper .swiper-pagination",
+                    clickable: false,
+                    type: "custom",
+                    renderCustom: function (swiper, current, total) {
+                        return (
+                            '<span class="current">' + 0 + (current) + '</span>' + '<span class="total">' + 0 + (total) + '</span>'
+                        );
+                    }
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                on: {
+                    autoplayTimeLeft(s, time, progress) {
+                        progressLine.style.setProperty("--progress", 1 - progress)
+                    }
+                }
+            });
+
+            let listNav = $('.product .box .top_menu ul li');
+            let item = $('.product .box .list .item');
+
+            item.eq(0).show();
+
+            listNav.click(function () {
+                listNav.removeClass('on');
+                item.hide();
+
+                $(this).addClass('on');
+                item.eq($(this).index()).show();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header>
+            <div class="inner">
+                <h1>
+                    <img src="img/logo.png" alt="로고">
+                </h1>
+
+                <ul class="gnb">
+                    <li class="depth01">
+                        <a href="#">회사소개</a>
+
+                        <ul class="depth02">
+                            <li><a href="#">인사말</a></li>
+                            <li><a href="#">연혁</a></li>
+                            <li><a href="#">사업분야</a></li>
+                            <li><a href="#">카탈로그</a></li>
+                        </ul> <!-- depth02 end -->
+                    </li> <!-- depth01 end -->
+
+                    <li class="depth01">
+                        <a href="#">제품정보</a>
+
+                        <ul class="depth02">
+                            <li><a href="#">Barcode Printer</a></li>
+                            <li><a href="#">Label Printer</a></li>
+                            <li><a href="#">Label & Ribbon</a></li>
+                            <li><a href="#">Safety Sign</a></li>
+                            <li><a href="#">Lockout & Tagout</a></li>
+                        </ul> <!-- depth02 end -->
+                    </li> <!-- depth01 end -->
+
+                    <li class="depth01">
+                        <a href="#">기술분야</a>
+
+                        <ul class="depth02">
+                            <li><a href="#">Barcode System</a></li>
+                            <li><a href="#">Label Printer</a></li>
+                            <li><a href="#">Label & Ribbon</a></li>
+                            <li><a href="#">Safety Sign</a></li>
+                            <li><a href="#">Lockout & Tagout</a></li>
+                            <li><a href="#">RFID</a></li>
+                        </ul> <!-- depth02 end -->
+                    </li> <!-- depth01 end -->
+
+                    <li class="depth01">
+                        <a href="#">고객지원</a>
+
+                        <ul class="depth02">
+                            <li><a href="#">문의전화</a></li>
+                            <li><a href="#">Q&A</a></li>
+                            <li><a href="#">AS신청</a></li>
+                        </ul> <!-- depth02 end -->
+                    </li> <!-- depth01 end -->
+
+                    <li class="depth01">
+                        <a href="#">자료실</a>
+
+                        <ul class="depth02">
+                            <li><a href="#">드라이버 & 업데이트</a></li>
+                            <li><a href="#">데모버전</a></li>
+                            <li><a href="#">메뉴얼</a></li>
+                        </ul> <!-- depth02 end -->
+                    </li> <!-- depth01 end -->
+                </ul> <!-- main_nav end -->
+
+                <div class="sub_bg"></div>
+            </div> <!-- inner end -->
+        </header>
+
+        <div id="fullpage">
+            <div class="section main_visual" id="section0">
+                <div class="swiper mySwiper main_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/main_visual_01.jpg" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="img/main_visual_02.jpg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div> <!-- swiper end -->
+
+                <div class="title">
+                    <div class="square">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div> <!-- square end -->
+
+                    <div class="main_title">
+                        <strong>Product, Facility & Safety Identification Solutions</strong>
+                        <h2>Label & Sign 전문기업 신흥 L&S Tech(주)</h2>
+                    </div> <!-- main_title end -->
+
+                    <div class="sub_title">
+                        <p>공장자동화의 필수요소인 Barcode System에 필요한<br>
+                            장비 및 솔루션을 제공함으로서 기업의 생산성 향상에 이바지합니다.</p>
+                    </div> <!-- sub_title end -->
+                </div> <!-- title end -->
+            </div> <!-- #section0 end -->
+
+            <div class="section product" id="section1">
+                <div class="inner">
+                    <div class="box">
+                        <nav class="top_menu">
+                            <ul>
+                                <li class="on">Barcode Printer</li>
+                                <li>Label Printer</li>
+                                <li>Label & Ribbon</li>
+                                <li>Safety Sign</li>
+                                <li>Lockout & Tagout</li>
+                            </ul>
+                        </nav> <!-- top_menu end -->
+
+                        <div class="list">
+                            <div class="item">
+                                <div class="swiper mySwiper item_swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Barcode Printer<span>01</span></strong>
+                                                <h4>THARO(H436)</h4>
+                                                <p>새로워진 H-436 Printer는 세련된 디자인, 보다 편리하고, 업그레이드된 성능으로 출시되었습니다. 가격대비 우수한
+                                                    성능을 자랑하며 Window XP, Vista, 7, 8, UNIX, Linux 또는 Mac의 모든 운영체제와 호환
+                                                    가능합니다.</p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Barcode Printer<span>02</span></strong>
+                                                <h4>TSC(TTP-243 PLUS)</h4>
+                                                <p>한글 Rom Pack을 기본사양으로 공급하므로 Package Program이나 Program 제작 시 한글 사용에 전혀
+                                                    어려움이 없습니다.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Barcode Printer<span>03</span></strong>
+                                                <h4>ZEBRA(ZT200 Series)</h4>
+                                                <p>ZT200 시리즈는 효율적인 디자인과 작은 크기로 Stripe와 S4M 모델보다 물리적 공간을 더욱 작게 차지하며 최소한의
+                                                    운영자 교육, 주요 구성요소에 대한 Tool-less 유지보수, 서비스를 최소화하는 견고한 디자인 등의 혜택을
+                                                    제공합니다.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-box">
+                                        <div class="swiper-pagination"></div>
+                                        <div class="autoplay-progress">
+                                            <svg viewBox="0 0 100 10">
+                                                <line x1="0" y1="0" x2="100" y2="0">
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div> <!-- swiper end -->
+                            </div> <!-- item end -->
+
+                            <div class="item">
+                                <div class="swiper mySwiper item_swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label Printer<span>01</span></strong>
+                                                <h4>test 1</h4>
+                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat quod
+                                                    optio modi corporis nemo, beatae placeat iusto repellendus quidem
+                                                    ratione, quae, tempore sit. Deserunt neque harum eveniet quibusdam
+                                                    voluptate! Hic!</p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label Printer<span>02</span></strong>
+                                                <h4>test 2</h4>
+                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere
+                                                    culpa, nostrum reprehenderit nisi nobis animi placeat saepe odio
+                                                    perferendis blanditiis alias et perspiciatis nemo nam explicabo
+                                                    officia aliquid harum expedita.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-box">
+                                        <div class="swiper-pagination"></div>
+                                        <div class="autoplay-progress">
+                                            <svg viewBox="0 0 100 10">
+                                                <line x1="0" y1="0" x2="100" y2="0">
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div> <!-- swiper end -->
+                            </div> <!-- item end -->
+
+                            <div class="item">
+                                <div class="swiper mySwiper item_swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label & Ribbon<span>01</span></strong>
+                                                <h4>test 1</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label & Ribbon<span>02</span></strong>
+                                                <h4>test 2</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label & Ribbon<span>03</span></strong>
+                                                <h4>test 3</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Label & Ribbon<span>04</span></strong>
+                                                <h4>test 4</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-box">
+                                        <div class="swiper-pagination"></div>
+                                        <div class="autoplay-progress">
+                                            <svg viewBox="0 0 100 10">
+                                                <line x1="0" y1="0" x2="100" y2="0">
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div> <!-- swiper end -->
+                            </div> <!-- item end -->
+
+                            <div class="item">
+                                <div class="swiper mySwiper item_swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Safety Sign<span>01</span></strong>
+                                                <h4>test 1</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Safety Sign<span>02</span></strong>
+                                                <h4>test 2</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Safety Sign<span>03</span></strong>
+                                                <h4>test 3</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-box">
+                                        <div class="swiper-pagination"></div>
+                                        <div class="autoplay-progress">
+                                            <svg viewBox="0 0 100 10">
+                                                <line x1="0" y1="0" x2="100" y2="0">
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div> <!-- swiper end -->
+                            </div> <!-- item end -->
+
+                            <div class="item">
+                                <div class="swiper mySwiper item_swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Lockout & Tagout<span>01</span></strong>
+                                                <h4>test 1</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+
+                                        <div class="swiper-slide">
+                                            <div class="item_img">
+                                                <img src="https://placehold.co/400x350" alt="더미이미지">
+                                            </div> <!-- item_img end -->
+
+                                            <div class="item_info">
+                                                <strong>Lockout & Tagout<span>02</span></strong>
+                                                <h4>test 2</h4>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+                                                    dignissimos quae natus adipisci quod ullam, illum qui quo architecto
+                                                    autem officiis, necessitatibus incidunt cupiditate deserunt
+                                                    laboriosam magnam id accusantium quam.
+                                                </p>
+                                                <a href="#">VIEW MORE</a>
+                                            </div> <!-- item_info end -->
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-box">
+                                        <div class="swiper-pagination"></div>
+                                        <div class="autoplay-progress">
+                                            <svg viewBox="0 0 100 10">
+                                                <line x1="0" y1="0" x2="100" y2="0">
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div> <!-- swiper end -->
+                            </div> <!-- item end -->
+
+                            <div class="info">
+                                <h3>PRODUCT</h3>
+                                <p>신흥 L&S Tech의 제품을 소개합니다.</p>
+                            </div> <!-- info end -->
+                        </div> <!-- list end -->
+                    </div> <!-- box -->
+
+                    <div class="search">
+
+                    </div> <!-- search end -->
+                </div> <!-- inner end -->
+            </div> <!-- #section1 end -->
+
+            <div class="section product" id="section2"></div> <!-- #section2 end -->
+            <div class="section product" id="section3"></div> <!-- #section3 end -->
+            <div class="section product" id="section4"></div> <!-- #section4 end -->
+        </div> <!-- #fullpage end -->
+    </div> <!-- #wrap end -->
+</body>
+
+</html>
