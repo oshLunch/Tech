@@ -159,11 +159,12 @@ header .sub_bg {
 }
 
 .main_visual .mySwiper {
-    height: 930px;
+    height: 100vh;
 }
 
 .main_visual .swiper-slide {
     position: relative;
+    overflow: hidden;
 }
 
 .main_visual .swiper-slide::before {
@@ -299,27 +300,6 @@ header .sub_bg {
     margin-top: 50px;
 }
 
-.product .box .top_menu {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.product .box .top_menu ul {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.product .box .top_menu ul li {
-    padding: 15px 30px;
-    cursor: pointer;
-    color: white;
-}
-
-.product .box .top_menu ul li.on {
-    background-color: white;
-    color: #333;
-}
-
 .product .box .list {
     height: 500px;
     display: flex;
@@ -329,16 +309,15 @@ header .sub_bg {
 }
 
 .product .box .list .item {
-    display: none;
+    display: flex;
     width: 65%;
     height: 100%;
-    padding: 60px;
-    /* box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1); */
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
     background-color: white;
 }
 
-.product .box .list .item .swiper {
-    position: static;
+.product .box .list .item .item_swiper {
+    display: block;
     height: 100%;
 }
 
@@ -346,6 +325,7 @@ header .sub_bg {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 60px;
 }
 
 .product .box .list .item .swiper-slide .item_img {
@@ -355,39 +335,50 @@ header .sub_bg {
 
 .product .box .list .item .swiper-slide .item_info {
     width: 40%;
-    height: 100%;
-    display: flex;
+    height: 380px;
+    /* display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-.product .box .list .item .swiper-slide .item_info strong {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 30px;
+    justify-content: center; */
     position: relative;
+    padding: 40px 0;
 }
 
-.product .box .list .item .swiper-slide .item_info strong span {
+/* .product .box .list .item .swiper-slide .item_info strong {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 30px;
+    color: rgba(0, 0, 0, 0.2);
+    position: relative;
+} */
+
+.product .box .list .item .swiper-slide .item_info span {
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    transform: translateY(-50%);
     font-size: 70px;
     font-weight: bold;
     color: #007fc830;
 }
 
+.product .box .list .item .swiper-slide .item_info p {
+    padding-left: 3px;
+    font-weight: bold;
+}
+
 .product .box .list .item .swiper-slide .item_info h4 {
-    font-size: 25px;
+    font-size: 30px;
     margin-bottom: 18px;
 }
 
-.product .box .list .item .swiper-slide .item_info p {
+.product .box .list .item .swiper-slide .item_info ul {
     word-break: keep-all;
     height: 150px;
     margin-bottom: 40px;
+}
+
+.product .box .list .item .swiper-slide .item_info ul li {
+    padding: 3px 5px;
 }
 
 .product .box .list .item .swiper-slide .item_info a {
@@ -407,96 +398,45 @@ header .sub_bg {
     transition: .3s;
 }
 
-.product .progress-box {
-    width: 180px;
+.product .button-box {
+    width: 120px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
     position: absolute;
-    left: 69.5%;
-    bottom: 20%;
-    transform: translateX(50%);
+    left: 60px;
+    bottom: 80px;
+    /* transform: translateX(50%); */
     z-index: 11;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    width: auto;
-    height: auto;
-    top: 50%;
-    transform: translateY(-50%);
+.product .button-box .swiper-button-next,
+.product .button-box .swiper-button-prev {
+    position: static;
+    width: 40px;
+    height: 40px;
     margin-top: 0;
+    background-color: white;
 }
 
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
-    content: '▶️';
-    font-size: 25px;
-    top: 50%;
-    left: 50%;
-    transform: rotate(180deg);
-    color: white;
+    content: '❮';
 }
 
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-    content: '▶️';
+    content: '❯';
+}
+
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after,
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
     font-size: 25px;
     top: 50%;
     left: 50%;
-    color: white;
-}
-
-.swiper-button-prev {
-    left: -30px;
-}
-
-.swiper-button-next {
-    right: -30px;
-}
-
-.product .progress-box .swiper-pagination {
-    display: flex;
-    color: white;
-    font-size: 18px;
-    justify-content: space-between;
-    align-items: center;
-    position: static;
-    z-index: 99;
-}
-
-.product .progress-box .swiper-pagination span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-}
-
-.product .progress-box .swiper-pagination .current {
-    display: block;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.product .progress-box .autoplay-progress {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 100px;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.product .progress-box .autoplay-progress svg {
-    --progress: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    width: 100%;
-    stroke-width: 5px;
-    stroke: #fff;
-    fill: none;
-    stroke-dashoffset: calc(100 * (1 - var(--progress)));
-    stroke-dasharray: 100;
+    color: #0080c8;
 }
 
 .product .box .list .info {
@@ -509,13 +449,151 @@ header .sub_bg {
 }
 
 .product .box .list .info h3 {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.product .box .list .info h3 span {
     font-size: 40px;
-    margin-bottom: 20px;
+}
+
+.product .box .list .info p {
+    font-size: 16px;
+    line-height: 1.8;
 }
 
 .product .search {
     width: 100%;
     height: 150px;
-    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
     margin-top: 30px;
 }
+
+.product .search .search_title {
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px;
+}
+
+.product .search .search_title h3 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.product .search .search_title p {
+    color: white;
+}
+
+.product .search #searchForm {
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.product .search #searchForm .search_bar {
+    width: 80%;
+    padding: 12px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    font-size: 20px;
+}
+
+.product .search #searchForm .search_bar:focus {
+    outline: none;
+}
+
+.product .search #searchForm button {
+    /* content: '⌕'; */
+    width: 50px;
+    height: 49px;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+}
+
+.product .search #searchForm button::after {
+    content: '⌕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------- */
+/* location */
+
+.location .location_box {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.location .location_box .location_info {
+    width: 30%;
+    background-color: #0080c8;
+    color: white;
+    padding: 60px;
+}
+
+.location .location_box .location_info h3 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.location .location_box .location_info > p {
+    margin-bottom: 20px;
+}
+
+.location .location_box .location_info ul li {
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+
+.location .location_box .location_info ul li strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.location .location_box .map2 {
+    width: 70%;
+    height: 70vh;
+    position: relative;
+}
+
+.location .location_box .map2 .root_daum_roughmap_landing {
+    width: 100% !important;
+    height: calc(100% - 30px);
+    overflow: visible;
+}
+
+.location .location_box .map2 .root_daum_roughmap_landing svg {
+    display: none;
+}
+
+.root_daum_roughmap .wrap_controllers {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    z-index: 99;
+}
+
+/* -------------------------------------------------------------------- */
+/* location */
+
