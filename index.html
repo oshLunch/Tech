@@ -17,27 +17,42 @@
 
     <script>
         $(function () {
+            let pBox = $('.product .box');
+            let pSearch = $('.product .search');
+
+            let nFaq = $('.notice .faq');
+            let nDown = $('.notice .ect .download');
+            let nContact = $('.notice .ect .contact');
+
+            let lBox = $('.location .location_box');
+
             // fullpage 설정, 페이지 넘길 시 애니메이션 트리거 설정
             var myFullpage = new fullpage('#fullpage', {
                 navigation: false,
                 slidesNavigation: true,
                 lazyLoad: true,
                 credits: { enabled: false },
-                anchors: ['home', 'about', 'project', 'design', 'contact'],
+                anchors: ['main_visual', 'product', 'notice', 'location', 'footer'],
                 afterLoad: function (origin, destination, direction) {
-                    if (destination.index == 0) {            // home 페이지로 이동했을 때
+                    if (destination.index == 0) {
                     }
 
-                    else if (destination.index == 1) {      // about 페이지로 이동했을 때
+                    else if (destination.index == 1) {
+                        pBox.addClass('show');
+                        pSearch.addClass('show');
                     }
 
-                    else if (destination.index == 2) {      // project 페이지로 이동했을 때
+                    else if (destination.index == 2) {
+                        nFaq.addClass('show');
+                        nDown.addClass('show');
+                        nContact.addClass('show');
                     }
 
-                    else if (destination.index == 3) {      // design 페이지로 이동했을 때
+                    else if (destination.index == 3) {
+                        lBox.addClass('show');
                     }
 
-                    else if (destination.index == 4) {      // contact 페이지로 이동했을 때
+                    else if (destination.index == 4) {
                     }
                 }
             });
@@ -84,13 +99,28 @@
                 observeParents: true,
                 initialSlide: 0,
                 loop: true,
-                /* autoplay: {
-                    delay: 2500,
+                autoplay: {
+                    delay: 5000,
                     disableOnInteraction: false,
-                }, */
+                },
+                pagination: {
+                    el: ".number",
+                    clickable: false,
+                    type: "custom",
+                    renderCustom: function (swiper, current, total) {
+                        return (
+                            '<span class="current">' + 0 + (current) + '</span>' + '<span class="total">' + 0 + (total) + '</span>'
+                        );
+                    }
+                },
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
+                },
+                on: {
+                    autoplayTimeLeft(s, time, progress) {
+                        progressLine.style.setProperty("--progress", 1 - progress)
+                    }
                 }
             });
 
@@ -100,6 +130,11 @@
                 "mapWidth": "980",
                 "mapHeight": "650"
             }).render();
+
+            let map = $('.root_daum_roughmap .wrap_map');
+            map.css({
+                "height": "100%"
+            })
         })
     </script>
 </head>
@@ -109,7 +144,9 @@
         <header>
             <div class="inner">
                 <h1>
-                    <img src="img/logo.png" alt="로고">
+                    <a href="#main_visual">
+                        <img src="img/logo.png" alt="로고">
+                    </a>
                 </h1>
 
                 <ul class="gnb">
@@ -125,7 +162,7 @@
                     </li> <!-- depth01 end -->
 
                     <li class="depth01">
-                        <a href="#">제품정보</a>
+                        <a href="#product">제품정보</a>
 
                         <ul class="depth02">
                             <li><a href="#">Barcode Printer</a></li>
@@ -150,7 +187,7 @@
                     </li> <!-- depth01 end -->
 
                     <li class="depth01">
-                        <a href="#">고객지원</a>
+                        <a href="#notice">고객지원</a>
 
                         <ul class="depth02">
                             <li><a href="#">문의전화</a></li>
@@ -160,10 +197,11 @@
                     </li> <!-- depth01 end -->
 
                     <li class="depth01">
-                        <a href="#">자료실</a>
+                        <a href="#notice">자료실</a>
 
                         <ul class="depth02">
-                            <li><a href="#">드라이버 & 업데이트</a></li>
+                            <li><a href="#">Dirver</a></li>
+                            <li><a href="#">Update</a></li>
                             <li><a href="#">데모버전</a></li>
                             <li><a href="#">메뉴얼</a></li>
                         </ul> <!-- depth02 end -->
@@ -208,14 +246,19 @@
                             장비 및 솔루션을 제공함으로서 기업의 생산성 향상에 이바지합니다.</p>
                     </div> <!-- sub_title end -->
                 </div> <!-- title end -->
-            </div> <!-- #section0 end -->
+
+                <div class="scroll_down move">
+                    <div class="mouse_frame"></div>
+                    <div class="mouse_wheel"></div>
+                </div> <!-- scroll_down end -->
+            </div> <!-- main_visual end -->
 
             <div class="section product" id="section1">
                 <div class="inner">
                     <div class="box">
                         <div class="list">
                             <div class="item">
-                                <div class="swiper mySwiper item_swiper on">
+                                <div class="swiper mySwiper item_swiper">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="item_img">
@@ -246,10 +289,10 @@
                                                 <p>Label Printer</p>
                                                 <h4>라벨 프린터</h4>
                                                 <ul>
-                                                    <li>- Barcode Printer</li>
-                                                    <li>- Barcode Scanner</li>
-                                                    <li>- Applicator</li>
-                                                    <li>- PDA</li>
+                                                    <li>- PowerMark</li>
+                                                    <li>- GlobalMark</li>
+                                                    <li>- HandiMark</li>
+                                                    <li>- Duralabel</li>
                                                 </ul>
                                                 <a href="#">VIEW MORE</a>
                                             </div> <!-- item_info end -->
@@ -265,10 +308,9 @@
                                                 <p>Label & Ribbon</p>
                                                 <h4>라벨 & 리본</h4>
                                                 <ul>
-                                                    <li>- Barcode Printer</li>
-                                                    <li>- Barcode Scanner</li>
-                                                    <li>- Applicator</li>
-                                                    <li>- PDA</li>
+                                                    <li>- Label</li>
+                                                    <li>- Ribbon</li>
+                                                    <li>- 거래처 제품</li>
                                                 </ul>
                                                 <a href="#">VIEW MORE</a>
                                             </div> <!-- item_info end -->
@@ -284,10 +326,8 @@
                                                 <p>Safety Sign</p>
                                                 <h4>안전표지</h4>
                                                 <ul>
-                                                    <li>- Barcode Printer</li>
-                                                    <li>- Barcode Scanner</li>
-                                                    <li>- Applicator</li>
-                                                    <li>- PDA</li>
+                                                    <li>- Safety Sign Label</li>
+                                                    <li>- Floor Safety Signs</li>
                                                 </ul>
                                                 <a href="#">VIEW MORE</a>
                                             </div> <!-- item_info end -->
@@ -303,10 +343,10 @@
                                                 <p>Lockout & Tagout</p>
                                                 <h4>잠금 및 태그아웃</h4>
                                                 <ul>
-                                                    <li>- Barcode Printer</li>
-                                                    <li>- Barcode Scanner</li>
-                                                    <li>- Applicator</li>
-                                                    <li>- PDA</li>
+                                                    <li>- Lockout 기물</li>
+                                                    <li>- Tag</li>
+                                                    <li>- Safety Padlock</li>
+                                                    <li>- 각종 Station</li>
                                                 </ul>
                                                 <a href="#">VIEW MORE</a>
                                             </div> <!-- item_info end -->
@@ -317,9 +357,21 @@
 
                             <div class="info">
                                 <h3>SHIN HEUNG L&S TECH's<br>
-                                    <span>PRODUCT INFO</span></h3>
-                                <p>디지털 미래를 선도할 Label & Sign 전문기업<br>
-                                    신흥 L&S Tech의 제품을 소개합니다.</p>
+                                    <span>PRODUCT INFO</span>
+                                </h3>
+                                <p>디지털 미래를 선도할<br>
+                                    Label & Sign 전문기업<br>
+                                    신흥 L&S Tech의 제품을 소개합니다.
+                                </p>
+
+                                <div class="progress-box">
+                                    <div class="swiper-pagination number"></div>
+                                    <div class="autoplay-progress">
+                                        <svg viewBox="0 0 100 10">
+                                            <line x1="0" y1="0" x2="100" y2="0">
+                                        </svg>
+                                    </div>
+                                </div> <!-- progress-box end -->
 
                                 <div class="button-box">
                                     <div class="swiper-button-prev"></div>
@@ -342,9 +394,99 @@
                         </form> <!-- searchForm end -->
                     </div> <!-- search end -->
                 </div> <!-- inner end -->
-            </div> <!-- #section1 end -->
+            </div> <!-- product end -->
 
-            <div class="section location" id="section2">
+            <div class="section notice" id="section2">
+                <div class="bg"></div>
+                <div class="inner">
+                    <div class="faq">
+                        <div class="faq_title">
+                            <h3>FAQ</h3>
+                            <p>자주 묻는 질문</p>
+                            <a href="#">
+                                <p>FAQ LIST</p>
+                                <span>➜</span>
+                            </a>
+                        </div> <!-- faq_title end -->
+
+                        <div class="faq_list">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <p>DURALABEL 4 프린터는 Window XP 환경만 지원되나요?</p>
+                                        <span>2023.10.31</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <p>Tape, Ribbon 인식을 하지 못합니다. 어떠한 조치를 해야 하나요?</p>
+                                        <span>2023.10.25</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <p>PC포맷(교체)으로 데이터가 소실되었습니다. 프로그램 원본을 재구입해야 하나요?</p>
+                                        <span>2023.10.19</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <p>잠금장치를 해야 하는데, 적절한 기물이 없는지요?</p>
+                                        <span>2023.10.13</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> <!-- faq_list end -->
+                    </div> <!-- faq end -->
+
+                    <div class="ect">
+                        <div class="download">
+                            <div class="driver">
+                                <a href="#">
+                                    <h3>Driver & Update</h3>
+                                    <p>드라이버 & 업데이트</p>
+                                    <img src="img/update_icon.png" alt="아이콘">
+                                </a>
+                            </div> <!-- driver -->
+
+                            <div class="manual">
+                                <a href="#">
+                                    <h3>Manual</h3>
+                                    <p>제품 메뉴얼</p>
+                                    <img src="img/manual_icon.png" alt="아이콘">
+                                </a>
+                            </div> <!-- manual end -->
+
+                            <div class="demp">
+                                <a href="#">
+                                    <h3>Demo Ver.</h3>
+                                    <p>데모버전</p>
+                                    <img src="img/demo_icon.png" alt="아이콘">
+                                </a>
+                            </div> <!-- manual end -->
+
+                            <div class="catalog">
+                                <a href="#">
+                                    <h3>Catalog</h3>
+                                    <p>카탈로그</p>
+                                    <img src="img/catalog_icon.png" alt="아이콘">
+                                </a>
+                            </div> <!-- manual end -->
+                        </div> <!-- download end -->
+
+                        <div class="contact">
+                            <h3>CONTACT US</h3>
+                            <p>고객님의 문의사항에 성심껏 답변해드리겠습니다.</p>
+                            <strong>Tel. 051-941-9566</strong>
+                        </div> <!-- contact end -->
+                    </div> <!-- ect end -->
+                </div> <!-- inner end -->
+            </div> <!-- notice end -->
+
+            <div class="section location" id="section3">
                 <div class="inner">
                     <div class="location_box">
                         <div class="location_info">
@@ -369,11 +511,94 @@
                         </div> <!-- map end -->
                     </div> <!-- location_box end -->
                 </div> <!-- inner end -->
-            </div> <!-- #section2 end -->
+            </div> <!-- location end -->
 
-            <div class="section product" id="section3"></div> <!-- #section3 end -->
-            <div class="section product" id="section4"></div> <!-- #section4 end -->
-        </div> <!-- #fullpage end -->
+            <div class="section footer" id="footer">
+                <div class="inner">
+                    <div class="f_btn">
+                        <ul class="f_click">
+                            <li><a href="#">개인정보처리방침</a></li>
+                            <li><a href="#">이메일무단수집거부</a></li>
+                            <li><a href="#">이용약관</a></li>
+                        </ul> <!-- f_click end -->
+
+
+                        <ul class="f_nav">
+                            <li class="f_depth01">
+                                <a href="#">회사소개</a>
+
+                                <ul class="f_depth02">
+                                    <li><a href="#">인사말</a></li>
+                                    <li><a href="#">연혁</a></li>
+                                    <li><a href="#">사업분야</a></li>
+                                    <li><a href="#">카탈로그</a></li>
+                                </ul> <!-- depth02 end -->
+                            </li> <!-- depth01 end -->
+
+                            <li class="f_depth01">
+                                <a href="#">제품정보</a>
+
+                                <ul class="f_depth02">
+                                    <li><a href="#">Barcode Printer</a></li>
+                                    <li><a href="#">Label Printer</a></li>
+                                    <li><a href="#">Label & Ribbon</a></li>
+                                    <li><a href="#">Safety Sign</a></li>
+                                    <li><a href="#">Lockout & Tagout</a></li>
+                                </ul> <!-- depth02 end -->
+                            </li> <!-- depth01 end -->
+
+                            <li class="f_depth01">
+                                <a href="#">기술분야</a>
+
+                                <ul class="f_depth02">
+                                    <li><a href="#">Barcode System</a></li>
+                                    <li><a href="#">Label Printer</a></li>
+                                    <li><a href="#">Label & Ribbon</a></li>
+                                    <li><a href="#">Safety Sign</a></li>
+                                    <li><a href="#">Lockout & Tagout</a></li>
+                                    <li><a href="#">RFID</a></li>
+                                </ul> <!-- depth02 end -->
+                            </li> <!-- depth01 end -->
+
+                            <li class="f_depth01">
+                                <a href="#">고객지원</a>
+
+                                <ul class="f_depth02">
+                                    <li><a href="#">문의전화</a></li>
+                                    <li><a href="#">Q&A</a></li>
+                                    <li><a href="#">AS신청</a></li>
+                                </ul> <!-- depth02 end -->
+                            </li> <!-- depth01 end -->
+
+                            <li class="f_depth01">
+                                <a href="#">자료실</a>
+
+                                <ul class="f_depth02">
+                                    <li><a href="#">드라이버 & 업데이트</a></li>
+                                    <li><a href="#">데모버전</a></li>
+                                    <li><a href="#">메뉴얼</a></li>
+                                </ul> <!-- f_depth02 end -->
+                            </li> <!-- f_depth01 end -->
+                        </ul> <!-- f_nav end -->
+                    </div> <!-- f_btn end -->
+
+                    <div class="f_text">
+                        <div class="f_info">
+                            <h1>
+                                <img src="img/logo.png" alt="로고">
+                            </h1>
+
+                            <ul>
+                                <li>부산광역시 강서구 상덕로119번길 67-12 신흥엘앤에스테크(주)</li>
+                                <li><span>대표번호</span> 051-941-9566 &nbsp;&nbsp; <span>FAX</span> 051-941-9569</li>
+                                <li><span>사업자등록번호</span> 추가예정</li>
+                                <li>Copyright © 2023. Shinheung L&S All rights reserved.</li>
+                            </ul>
+                        </div> <!-- f_info end -->
+                    </div> <!-- f_text end -->
+                </div> <!-- inner end -->
+            </div>
+        </div>
     </div> <!-- #wrap end -->
 </body>
 
